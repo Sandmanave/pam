@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
-project(spectogram LANGUAGES CXX)
+project(fftphase LANGUAGES CXX)
 
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 include_directories("../../pambase/")
@@ -17,27 +17,27 @@ message(STATUS, "Build Type: ${CMAKE_BUILD_TYPE}")
 
 file(GLOB SOURCES "*.cpp")
 
-add_library(spectogram MODULE ${SOURCES})
+add_library(fftphase MODULE ${SOURCES})
 
-target_compile_definitions(spectogram PUBLIC DLL_EXPORTS wxUSE_UNICODE _monitor_ _MSL_STDINT_H)
+target_compile_definitions(fftphase PUBLIC DLL_EXPORTS wxUSE_UNICODE _monitor_ _MSL_STDINT_H)
 
 list(APPEND flags "-fPIC" "-Wall" "-fpermissive")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
 	list(APPEND flags "-O3")
-	target_compile_definitions(spectogram PUBLIC NDEBUG)
+	target_compile_definitions(fftphase PUBLIC NDEBUG)
 elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 	list(APPEND flags "-Og")
-	target_compile_options(spectogram PRIVATE ${flags})
-	target_compile_definitions(spectogram PUBLIC __WXDEBUG__)
+	target_compile_options(fftphase PRIVATE ${flags})
+	target_compile_definitions(fftphase PUBLIC __WXDEBUG__)
 endif()
 
-target_compile_options(spectogram PRIVATE ${flags})
+target_compile_options(fftphase PRIVATE ${flags})
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-	target_compile_definitions(spectogram PUBLIC __WXGNU__)
+	target_compile_definitions(fftphase PUBLIC __WXGNU__)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-	target_compile_definitions(spectogram PUBLIC __WXMSW__)
+	target_compile_definitions(fftphase PUBLIC __WXMSW__)
 endif()
 
 
@@ -45,15 +45,15 @@ endif()
 find_package(wxWidgets REQUIRED)
 include(${wxWidgets_USE_FILE})
 
+target_link_libraries(fftphase ${wxWidgets_LIBRARIES})
+target_link_libraries(fftphase pambase)
+target_link_libraries(fftphase pamfft)
 
-target_link_libraries(spectogram ${wxWidgets_LIBRARIES})
-target_link_libraries(spectogram pambase)
-target_link_libraries(spectogram pamfft)
-
-set_target_properties(spectogram PROPERTIES LIBRARY_OUTPUT_DIRECTORY "../../../lib/monitor")
+set_target_properties(fftphase PROPERTIES LIBRARY_OUTPUT_DIRECTORY "../../../lib/monitor")
 
 #linux specific
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-	install(TARGETS spectogram LIBRARY DESTINATION /usr/local/lib/pam2/monitor)
+	install(TARGETS fftphase LIBRARY DESTINATION /usr/local/lib/pam2/monitor)
 endif()
+
 		

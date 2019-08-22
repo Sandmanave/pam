@@ -1,6 +1,15 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 project(pamworkspace)
 
+if(NOT CMAKE_BUILD_TYPE)
+	set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+endif()
+
+message(STATUS, "Build Type: ${CMAKE_BUILD_TYPE}")
+
+message(STATUS "C++ flags, Debug Configuration: ${CMAKE_CXX_FLAGS_DEBUG}")
+message(STATUS "C++ flags, Release Configuration: ${CMAKE_CXX_FLAGS_RELEASE}")
+
 message(STATUS "Configure pambase")
 add_subdirectory(pambase)
 message(STATUS "Configure pamfft")
@@ -49,6 +58,10 @@ message(STATUS "Configure plugin spectogram")
 add_subdirectory(plugins/spectogram)
 message(STATUS "Configure plugin waveform")
 add_subdirectory(plugins/waveform)
+message(STATUS "Configure plugin batter")
+add_subdirectory(plugins/battery)
+message(STATUS "Configure plugin fftphase")
+add_subdirectory(plugins/fftphase)
 message(STATUS "Configure pam2")
 add_subdirectory(pam2)
 message(STATUS "Configure pamupdatemanager")

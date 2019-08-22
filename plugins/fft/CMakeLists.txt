@@ -21,7 +21,7 @@ add_library(fft MODULE ${SOURCES})
 
 target_compile_definitions(fft PUBLIC DLL_EXPORTS wxUSE_UNICODE _monitor_ _MSL_STDINT_H)
 
-list(APPEND flags "-fPIC" "-Wall" "-fpermissive" "-O3")
+list(APPEND flags "-fPIC" "-Wall" "-fpermissive")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
 	list(APPEND flags "-O3")

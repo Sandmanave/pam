@@ -220,11 +220,13 @@ void dlgWizard::CreateFiles(const wxArrayString& asFiles, const wxString& sSub)
         {
             sName << m_ptxtName->GetValue() << wxT(".cbp");
         }
+        else if (fileFrom.GetName() == wxT("CMakeLists"))
+        {
+            sName = fileFrom.GetFullName();
+        }
         else
         {
             sName << m_ptxtName->GetValue() << fileFrom.GetFullName();
-
-
         }
 
 
