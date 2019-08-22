@@ -65,5 +65,5 @@ void pnlRoutiing::SetNumberOfChannels(unsigned int nChannels)
 
 void pnlRoutiing::OnlstFFT_RoutingSelected(wxCommandEvent& event)
 {
-    m_pBuilder->OnRoutingChanged(event);
+   // m_pBuilder->OnRoutingChanged(event);
 }

@@ -49,7 +49,7 @@ pnlOptions::~pnlOptions()
 
 void pnlOptions::OnbtnFFT_HoldClick(wxCommandEvent& event)
 {
-    m_pBuilder->OnHoldClicked(event);
+//    m_pBuilder->OnHoldClicked(event);
 }
 
 void pnlOptions::OnbtnFFT_CursorClick(wxCommandEvent& event)
