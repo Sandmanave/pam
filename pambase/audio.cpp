@@ -305,7 +305,6 @@ double Audio::GetOutputLatency()
 
 double Audio::GetInputLatency()
 {
-    wxLogDebug(wxT("Stream 0x%x"), m_pStream);
     if(m_pStream)
     {
         const PaStreamInfo* pInfo = Pa_GetStreamInfo(m_pStream);

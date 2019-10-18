@@ -20,6 +20,7 @@
 class DNSServiceBrowser;
 class SapWatchThread;
 class RtpThread;
+class wmListAdv;
 
 class pnlRTP: public wxPanel
 {
@@ -50,7 +51,6 @@ class pnlRTP: public wxPanel
 		wmLabel* m_pLbl8;
 		wmLabel* m_pLbl2;
 		wmButton* m_pbtnUpdate;
-		wxTouchScreenHtml* m_phtmlResults;
 		wmKeyboard* m_pkeyboard;
 		wmButton* m_pbtnDeleteAll;
 		wmButton* m_pbtnSAP;
@@ -58,6 +58,9 @@ class pnlRTP: public wxPanel
 		wxPanel* Panel2;
 		wmLabel* m_plblDiscovering;
 		//*)
+
+		wmListAdv* m_pList;
+
 
 		void ListSources();
 
@@ -132,9 +135,8 @@ class pnlRTP: public wxPanel
 
         RtpThread* m_pThread;
 
-        wxString m_sTableMiddle;
+
         wxArrayString m_asServices;
-        static const wxString STR_TABLE;
 
 		DECLARE_EVENT_TABLE()
 };
